@@ -1,0 +1,14 @@
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\bin\Debug\Routing_Optimization.exe.config
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\bin\Debug\Routing_Optimization.exe
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\bin\Debug\Routing_Optimization.pdb
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\bin\Debug\pl-PL\Routing_Optimization.resources.dll
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.csprojResolveAssemblyReference.cache
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.MainMenu.resources
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.Properties.Resources.resources
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.MainMenu.pl-PL.resources
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.csproj.GenerateResource.Cache
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.csproj.CoreCompileInputs.cache
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\pl-PL\Routing_Optimization.resources.dll
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.exe
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.pdb
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Debug\Routing_Optimization.InformationForm.resources

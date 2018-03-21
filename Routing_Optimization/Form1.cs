@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Routing_Optimization
 {
-    public partial class Form1 : Form
+    public partial class MainMenu : Form
     {
-        public Form1()
+        public MainMenu()
         {
             InitializeComponent();
+        }
+
+        private void InfoButton_Click(object sender, EventArgs e)
+        {
+            InformationForm infos = new InformationForm();
+            infos.ShowDialog();
+
         }
     }
 }
