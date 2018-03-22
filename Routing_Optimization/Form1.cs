@@ -23,5 +23,25 @@ namespace Routing_Optimization
             infos.ShowDialog();
 
         }
+
+        private void trackBarMaxPath_ValueChanged(object sender, EventArgs e)
+        {
+            labelMaxPathValue.Text = trackBarMaxPath.Value.ToString();
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            labelMaxPathValue.Text = trackBarMaxPath.Value.ToString();
+        }
+
+        private void groupBoxGenerate_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonGenerateMap_Click(object sender, EventArgs e)
+        {
+            buttonSimulation.Enabled = true;
+        }
     }
 }
