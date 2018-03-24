@@ -60,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Topology.cs" />
+    <Compile Include="TopologyElements\Link.cs" />
+    <Compile Include="TopologyElements\Router.cs" />
     <EmbeddedResource Include="Form1.pl-PL.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
