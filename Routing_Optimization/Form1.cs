@@ -43,5 +43,11 @@ namespace Routing_Optimization
         {
             buttonSimulation.Enabled = true;
         }
+
+        private void buttonEditor_Click(object sender, EventArgs e)
+        {
+            TopologyEditorForm editor = new TopologyEditorForm();
+            editor.ShowDialog();
+        }
     }
 }

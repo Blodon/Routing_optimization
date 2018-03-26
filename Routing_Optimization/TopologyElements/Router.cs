@@ -13,6 +13,8 @@ namespace Routing_Optimization.TopologyElements
         private int routerID;
         private int numberOfConnections;
         private int[] connections;
+        private int positionX;
+        private int positionY;
 
         Router(int routerID, int numberOfConnections, int[] connections){
 
@@ -21,6 +23,16 @@ namespace Routing_Optimization.TopologyElements
             this.connections = connections;
             status = true;
 
+        }
+
+        public Router(int positionX, int positionY)
+        {
+            this.positionX = positionX;
+            this.positionY = positionY;
+        }
+
+        public Router()
+        {
         }
 
         ~Router()
@@ -33,6 +45,11 @@ namespace Routing_Optimization.TopologyElements
             status = false;
         }
 
+        internal int getID()
+        {
+            return routerID;
+        }
+
         public void turnOn()
         {
             status = true;
@@ -43,6 +60,24 @@ namespace Routing_Optimization.TopologyElements
             return connections;
         }
 
+        public int getPositionX()
+        {
+            return positionX;
+        }
+
+        public int getPositionY()
+        {
+            return positionY;
+        }
+
+
+        /**
+        public int[] getPositionVector()
+        {
+            int[] vector;
+            return vector;
+        }
+        **/
 
     }
 }

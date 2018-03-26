@@ -61,6 +61,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology.cs" />
+    <Compile Include="TopologyEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TopologyEditorForm.Designer.cs">
+      <DependentUpon>TopologyEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TopologyElements\Link.cs" />
     <Compile Include="TopologyElements\Router.cs" />
     <EmbeddedResource Include="Form1.pl-PL.resx">
@@ -81,6 +87,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TopologyEditorForm.resx">
+      <DependentUpon>TopologyEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

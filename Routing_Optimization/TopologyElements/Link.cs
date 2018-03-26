@@ -21,6 +21,10 @@ namespace Routing_Optimization.TopologyElements
             linkStatus = true;
         }
 
+        public Link()
+        {
+        }
+
         public bool CheckLink(int firstConnectedRouter, int secondConnectedRouter)
         {
             if ((routersConnected[0] == firstConnectedRouter ||

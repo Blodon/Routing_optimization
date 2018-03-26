@@ -46,24 +46,24 @@
             this.labelMaxRouters = new System.Windows.Forms.Label();
             this.buttonGenerateMap = new System.Windows.Forms.Button();
             this.groupBoxGenerate = new System.Windows.Forms.GroupBox();
+            this.buttonEditor = new System.Windows.Forms.Button();
+            this.groupBoxGenerateRandom = new System.Windows.Forms.GroupBox();
+            this.buttonBandwidthHelp = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.labelBandwidthRange = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelBandwidth = new System.Windows.Forms.Label();
             this.groupBoxSimulation = new System.Windows.Forms.GroupBox();
             this.buttonSimulation = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBoxGraph = new System.Windows.Forms.PictureBox();
             this.buttonLoadConnections = new System.Windows.Forms.Button();
-            this.groupBoxGenerateRandom = new System.Windows.Forms.GroupBox();
-            this.buttonEditor = new System.Windows.Forms.Button();
-            this.labelBandwidth = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.labelBandwidthRange = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.buttonBandwidthHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPath)).BeginInit();
             this.groupBoxGenerate.SuspendLayout();
+            this.groupBoxGenerateRandom.SuspendLayout();
             this.groupBoxSimulation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGraph)).BeginInit();
-            this.groupBoxGenerateRandom.SuspendLayout();
             this.SuspendLayout();
             // 
             // Title
@@ -72,7 +72,7 @@
             this.Title.Font = new System.Drawing.Font("Times New Roman", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Title.Location = new System.Drawing.Point(12, 9);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(767, 51);
+            this.Title.Size = new System.Drawing.Size(759, 49);
             this.Title.TabIndex = 0;
             this.Title.Text = "Optymalizacja trasy w ruchu sieciowym";
             // 
@@ -223,6 +223,79 @@
             this.groupBoxGenerate.Text = "Generator połączń";
             this.groupBoxGenerate.Enter += new System.EventHandler(this.groupBoxGenerate_Enter);
             // 
+            // buttonEditor
+            // 
+            this.buttonEditor.Location = new System.Drawing.Point(14, 35);
+            this.buttonEditor.Name = "buttonEditor";
+            this.buttonEditor.Size = new System.Drawing.Size(376, 50);
+            this.buttonEditor.TabIndex = 1;
+            this.buttonEditor.Text = "Edytor połączeń";
+            this.buttonEditor.UseVisualStyleBackColor = true;
+            this.buttonEditor.Click += new System.EventHandler(this.buttonEditor_Click);
+            // 
+            // groupBoxGenerateRandom
+            // 
+            this.groupBoxGenerateRandom.Controls.Add(this.buttonBandwidthHelp);
+            this.groupBoxGenerateRandom.Controls.Add(this.comboBox2);
+            this.groupBoxGenerateRandom.Controls.Add(this.labelBandwidthRange);
+            this.groupBoxGenerateRandom.Controls.Add(this.comboBox1);
+            this.groupBoxGenerateRandom.Controls.Add(this.labelBandwidth);
+            this.groupBoxGenerateRandom.Controls.Add(this.buttonGenerateMap);
+            this.groupBoxGenerateRandom.Controls.Add(this.listBox1);
+            this.groupBoxGenerateRandom.Controls.Add(this.trackBarMaxPath);
+            this.groupBoxGenerateRandom.Controls.Add(this.labelMaxRouters);
+            this.groupBoxGenerateRandom.Controls.Add(this.labelMaxPathValue);
+            this.groupBoxGenerateRandom.Controls.Add(this.labelSelectMaxPath);
+            this.groupBoxGenerateRandom.Location = new System.Drawing.Point(8, 96);
+            this.groupBoxGenerateRandom.Name = "groupBoxGenerateRandom";
+            this.groupBoxGenerateRandom.Size = new System.Drawing.Size(388, 281);
+            this.groupBoxGenerateRandom.TabIndex = 0;
+            this.groupBoxGenerateRandom.TabStop = false;
+            this.groupBoxGenerateRandom.Text = "Losowe połączenia";
+            // 
+            // buttonBandwidthHelp
+            // 
+            this.buttonBandwidthHelp.Location = new System.Drawing.Point(338, 29);
+            this.buttonBandwidthHelp.Name = "buttonBandwidthHelp";
+            this.buttonBandwidthHelp.Size = new System.Drawing.Size(30, 30);
+            this.buttonBandwidthHelp.TabIndex = 17;
+            this.buttonBandwidthHelp.Text = "?";
+            this.buttonBandwidthHelp.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(233, 29);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(99, 30);
+            this.comboBox2.TabIndex = 16;
+            // 
+            // labelBandwidthRange
+            // 
+            this.labelBandwidthRange.AutoSize = true;
+            this.labelBandwidthRange.Location = new System.Drawing.Point(197, 32);
+            this.labelBandwidthRange.Name = "labelBandwidthRange";
+            this.labelBandwidthRange.Size = new System.Drawing.Size(30, 22);
+            this.labelBandwidthRange.TabIndex = 15;
+            this.labelBandwidthRange.Text = "do";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(92, 29);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(99, 30);
+            this.comboBox1.TabIndex = 14;
+            // 
+            // labelBandwidth
+            // 
+            this.labelBandwidth.AutoSize = true;
+            this.labelBandwidth.Location = new System.Drawing.Point(23, 32);
+            this.labelBandwidth.Name = "labelBandwidth";
+            this.labelBandwidth.Size = new System.Drawing.Size(63, 22);
+            this.labelBandwidth.TabIndex = 13;
+            this.labelBandwidth.Text = "Łącza:";
+            // 
             // groupBoxSimulation
             // 
             this.groupBoxSimulation.Controls.Add(this.buttonSimulation);
@@ -285,78 +358,6 @@
             this.buttonLoadConnections.Text = "Wczytaj połączenia";
             this.buttonLoadConnections.UseVisualStyleBackColor = true;
             // 
-            // groupBoxGenerateRandom
-            // 
-            this.groupBoxGenerateRandom.Controls.Add(this.buttonBandwidthHelp);
-            this.groupBoxGenerateRandom.Controls.Add(this.comboBox2);
-            this.groupBoxGenerateRandom.Controls.Add(this.labelBandwidthRange);
-            this.groupBoxGenerateRandom.Controls.Add(this.comboBox1);
-            this.groupBoxGenerateRandom.Controls.Add(this.labelBandwidth);
-            this.groupBoxGenerateRandom.Controls.Add(this.buttonGenerateMap);
-            this.groupBoxGenerateRandom.Controls.Add(this.listBox1);
-            this.groupBoxGenerateRandom.Controls.Add(this.trackBarMaxPath);
-            this.groupBoxGenerateRandom.Controls.Add(this.labelMaxRouters);
-            this.groupBoxGenerateRandom.Controls.Add(this.labelMaxPathValue);
-            this.groupBoxGenerateRandom.Controls.Add(this.labelSelectMaxPath);
-            this.groupBoxGenerateRandom.Location = new System.Drawing.Point(8, 96);
-            this.groupBoxGenerateRandom.Name = "groupBoxGenerateRandom";
-            this.groupBoxGenerateRandom.Size = new System.Drawing.Size(388, 281);
-            this.groupBoxGenerateRandom.TabIndex = 0;
-            this.groupBoxGenerateRandom.TabStop = false;
-            this.groupBoxGenerateRandom.Text = "Losowe połączenia";
-            // 
-            // buttonEditor
-            // 
-            this.buttonEditor.Location = new System.Drawing.Point(14, 35);
-            this.buttonEditor.Name = "buttonEditor";
-            this.buttonEditor.Size = new System.Drawing.Size(376, 50);
-            this.buttonEditor.TabIndex = 1;
-            this.buttonEditor.Text = "Edytor połączeń";
-            this.buttonEditor.UseVisualStyleBackColor = true;
-            // 
-            // labelBandwidth
-            // 
-            this.labelBandwidth.AutoSize = true;
-            this.labelBandwidth.Location = new System.Drawing.Point(23, 32);
-            this.labelBandwidth.Name = "labelBandwidth";
-            this.labelBandwidth.Size = new System.Drawing.Size(63, 22);
-            this.labelBandwidth.TabIndex = 13;
-            this.labelBandwidth.Text = "Łącza:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(92, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(99, 30);
-            this.comboBox1.TabIndex = 14;
-            // 
-            // labelBandwidthRange
-            // 
-            this.labelBandwidthRange.AutoSize = true;
-            this.labelBandwidthRange.Location = new System.Drawing.Point(197, 32);
-            this.labelBandwidthRange.Name = "labelBandwidthRange";
-            this.labelBandwidthRange.Size = new System.Drawing.Size(30, 22);
-            this.labelBandwidthRange.TabIndex = 15;
-            this.labelBandwidthRange.Text = "do";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(233, 29);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(99, 30);
-            this.comboBox2.TabIndex = 16;
-            // 
-            // buttonBandwidthHelp
-            // 
-            this.buttonBandwidthHelp.Location = new System.Drawing.Point(338, 29);
-            this.buttonBandwidthHelp.Name = "buttonBandwidthHelp";
-            this.buttonBandwidthHelp.Size = new System.Drawing.Size(30, 30);
-            this.buttonBandwidthHelp.TabIndex = 17;
-            this.buttonBandwidthHelp.Text = "?";
-            this.buttonBandwidthHelp.UseVisualStyleBackColor = true;
-            // 
             // MainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -379,12 +380,12 @@
             this.Load += new System.EventHandler(this.MainMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPath)).EndInit();
             this.groupBoxGenerate.ResumeLayout(false);
+            this.groupBoxGenerateRandom.ResumeLayout(false);
+            this.groupBoxGenerateRandom.PerformLayout();
             this.groupBoxSimulation.ResumeLayout(false);
             this.groupBoxSimulation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGraph)).EndInit();
-            this.groupBoxGenerateRandom.ResumeLayout(false);
-            this.groupBoxGenerateRandom.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
