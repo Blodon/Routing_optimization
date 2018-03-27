@@ -14,40 +14,83 @@ namespace Routing_Optimization
     public partial class TopologyEditorForm : Form
     {
 
+        public bool ready;
         private int editorOption;
         private Topology topology;
         private Router focusedRouter;
         private Link focusedLink;
+        private int selectNumber;
+
+        private int selectedRouterID;
 
 
         public TopologyEditorForm()
         {
             InitializeComponent();
-            topology = new Topology();
+            selectNumber = 1;
+            this.topology = new Topology();
+            labelTopologyAllInfos.Text = topology.informations();
+            
         }
 
         private void TopologyEditorForm_Load(object sender, EventArgs e)
         {
-
+            ready = false;
         }
 
         private void pictureBoxTopologyEditorMap_MouseClick(object sender, MouseEventArgs e)
         {
+            labelErrorMessage.Text = "";
             int x, y;
             x = MousePosition.X -550;
-            y = MousePosition.Y - 125;
+            y = MousePosition.Y - 100;
 
             if(editorOption == 1)
             {
-                setNewRouter(x, y);
+                if(topology.searchNearestRouter(x,y) == 0) setNewRouter(x, y);
+                else labelErrorMessage.Text = "Inny router jest za blisko!";
+
             } else if(editorOption == 2)
             {
+                int tempRouterID = topology.searchNearestRouter(x, y);
+
+                if (selectNumber == 1)
+                {
+                    if (tempRouterID != 0)
+                    {
+                        selectNumber = 2;
+                        selectedRouterID = tempRouterID;
+                    } else labelErrorMessage.Text = "Nie wybrano routera!";
+
+                }
+                else if (selectNumber == 2)
+                {
+                    if (tempRouterID != 0)
+                    {
+                        selectNumber = 1;
+                        if (selectedRouterID != tempRouterID)
+                        {
+                            if (!topology.checkLinkBetween(selectedRouterID, tempRouterID))
+                            {
+                                topology.newLink(selectedRouterID, tempRouterID, 100);
+                                pictureBoxTopologyEditorMap.Image = topology.drawGraph();
+                            } else labelErrorMessage.Text = "podane połączenie już istnieje!";
+                        } else labelErrorMessage.Text = "wybrano ten sam router!";
+
+                    } else labelErrorMessage.Text = "Nie wybrano routera!";
+                }
 
             } else if(editorOption == 3)
             {
-                Router tempRouter = topology.searchNearestRouter(x, y);
+               int infoRouterID = topology.searchNearestRouter(x, y);
+                Router infoRouter;
+                if (infoRouterID != 0) labelRouterInfos.Text = topology.getRouterByID(infoRouterID).informations();
+                else labelErrorMessage.Text = "Nie wybrano routera!";
+
             }
-            
+
+            labelTopologyAllInfos.Text = topology.informations();
+
         }
 
         private void pictureBoxTopologyEditorMap_MouseHover(object sender, EventArgs e)
@@ -74,6 +117,7 @@ namespace Routing_Optimization
         private void buttonSetLink_Click(object sender, EventArgs e)
         {
             editOption(2);
+            selectedRouterID = 1;
             buttonSetLink.ForeColor = System.Drawing.Color.Green;
             
         }
@@ -97,45 +141,29 @@ namespace Routing_Optimization
         private void setNewRouter(int x, int y)
         {
             topology.newRouter(x,y);
-
-            Point pointer = new Point(x, y);
-            Point pointer2 = new Point(500, 350);
-
-           
-            Bitmap bitmap = new Bitmap(1000, 700);
-            Graphics g = Graphics.FromImage(bitmap);
-
-            Brush aBrush = (Brush)Brushes.Green;
-            Brush bBrush = (Brush)Brushes.Black;
-            Brush cBrush = (Brush)Brushes.HotPink;
-
-            Pen pen = new Pen(cBrush);
-
-            Font font = new Font("Arial", 12);
-
-
-            g.DrawLine(pen, pointer, pointer2);
-            g.FillEllipse(aBrush, x-10, y-10, 22, 22);
-
-            int toMiddle = 6;
-            if (x % 15 >= 10) toMiddle = 12;
-            g.DrawString((x%15).ToString(), font, bBrush, x-toMiddle, y-8);
-
             
-
-            pictureBoxTopologyEditorMap.Image = bitmap;
-
-
+            pictureBoxTopologyEditorMap.Image = topology.drawGraph();
 
         }
 
+        public Bitmap getDrawing()
+        {
+            return topology.drawGraph();
+        }
 
+        private void buttonReady_Click(object sender, EventArgs e)
+        {
+            ready = true;
+            this.Close();
+        }
 
-
-
-
-
-
-
+        private void buttonTopologyReset_Click(object sender, EventArgs e)
+        {
+            this.topology = new Topology();
+            pictureBoxTopologyEditorMap.Image = topology.drawGraph();
+            labelErrorMessage.Text = "";
+            labelRouterInfos.Text = "";
+            labelTopologyAllInfos.Text = topology.informations();
+        }
     }
 }

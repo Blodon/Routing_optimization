@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.Title = new System.Windows.Forms.Label();
             this.InfoButton = new System.Windows.Forms.Button();
@@ -48,6 +48,7 @@
             this.groupBoxGenerate = new System.Windows.Forms.GroupBox();
             this.buttonEditor = new System.Windows.Forms.Button();
             this.groupBoxGenerateRandom = new System.Windows.Forms.GroupBox();
+            this.buttonShowGenerator = new System.Windows.Forms.Button();
             this.buttonBandwidthHelp = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.labelBandwidthRange = new System.Windows.Forms.Label();
@@ -213,6 +214,7 @@
             // 
             // groupBoxGenerate
             // 
+            this.groupBoxGenerate.Controls.Add(this.buttonShowGenerator);
             this.groupBoxGenerate.Controls.Add(this.buttonEditor);
             this.groupBoxGenerate.Controls.Add(this.groupBoxGenerateRandom);
             this.groupBoxGenerate.Location = new System.Drawing.Point(15, 138);
@@ -252,6 +254,18 @@
             this.groupBoxGenerateRandom.TabIndex = 0;
             this.groupBoxGenerateRandom.TabStop = false;
             this.groupBoxGenerateRandom.Text = "Losowe połączenia";
+            this.groupBoxGenerateRandom.Visible = false;
+            // 
+            // buttonShowGenerator
+            // 
+            this.buttonShowGenerator.Location = new System.Drawing.Point(14, 100);
+            this.buttonShowGenerator.Name = "buttonShowGenerator";
+            this.buttonShowGenerator.Size = new System.Drawing.Size(376, 50);
+            this.buttonShowGenerator.TabIndex = 18;
+            this.buttonShowGenerator.Text = "Losowe połączenia";
+            this.buttonShowGenerator.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.buttonShowGenerator.UseVisualStyleBackColor = true;
+            this.buttonShowGenerator.Click += new System.EventHandler(this.buttonShowGenerator_Click);
             // 
             // buttonBandwidthHelp
             // 
@@ -324,22 +338,23 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(785, 435);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(714, 370);
             this.chart1.TabIndex = 15;
             this.chart1.Text = "chart1";
             // 
             // pictureBoxGraph
             // 
+            this.pictureBoxGraph.BackColor = System.Drawing.Color.White;
             this.pictureBoxGraph.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGraph.Image")));
             this.pictureBoxGraph.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxGraph.InitialImage")));
             this.pictureBoxGraph.Location = new System.Drawing.Point(785, 12);
@@ -357,6 +372,7 @@
             this.buttonLoadConnections.TabIndex = 17;
             this.buttonLoadConnections.Text = "Wczytaj połączenia";
             this.buttonLoadConnections.UseVisualStyleBackColor = true;
+            this.buttonLoadConnections.Click += new System.EventHandler(this.buttonLoadConnections_Click);
             // 
             // MainMenu
             // 
@@ -419,6 +435,7 @@
         private System.Windows.Forms.Label labelBandwidthRange;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonBandwidthHelp;
+        private System.Windows.Forms.Button buttonShowGenerator;
     }
 }
 

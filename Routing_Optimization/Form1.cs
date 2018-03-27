@@ -12,8 +12,11 @@ namespace Routing_Optimization
 {
     public partial class MainMenu : Form
     {
+        TopologyEditorForm editor;
+
         public MainMenu()
         {
+            editor = new TopologyEditorForm();
             InitializeComponent();
         }
 
@@ -42,12 +45,32 @@ namespace Routing_Optimization
         private void buttonGenerateMap_Click(object sender, EventArgs e)
         {
             buttonSimulation.Enabled = true;
+            pictureBoxGraph.Image = editor.getDrawing();
+
         }
 
         private void buttonEditor_Click(object sender, EventArgs e)
         {
-            TopologyEditorForm editor = new TopologyEditorForm();
+            
             editor.ShowDialog();
+
+            //// ready event handler
+            while (!editor.ready);
+            editor.ready = false;
+
+
+            pictureBoxGraph.Image = editor.getDrawing();
+        }
+
+        private void buttonLoadConnections_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonShowGenerator_Click(object sender, EventArgs e)
+        {
+            buttonShowGenerator.Hide();
+            groupBoxGenerateRandom.Show();
         }
     }
 }

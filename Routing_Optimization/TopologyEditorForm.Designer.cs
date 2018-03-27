@@ -37,7 +37,14 @@
             this.buttonAddRouter = new System.Windows.Forms.Button();
             this.buttonSetLink = new System.Windows.Forms.Button();
             this.buttonShowInfos = new System.Windows.Forms.Button();
+            this.labelErrorMessage = new System.Windows.Forms.Label();
+            this.buttonReady = new System.Windows.Forms.Button();
+            this.labelRouterInfos = new System.Windows.Forms.Label();
+            this.buttonTopologyReset = new System.Windows.Forms.Button();
+            this.groupBoxInformations = new System.Windows.Forms.GroupBox();
+            this.labelTopologyAllInfos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).BeginInit();
+            this.groupBoxInformations.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTopologyEditor
@@ -127,11 +134,76 @@
             this.buttonShowInfos.UseVisualStyleBackColor = true;
             this.buttonShowInfos.Click += new System.EventHandler(this.buttonShowInfos_Click);
             // 
+            // labelErrorMessage
+            // 
+            this.labelErrorMessage.AutoSize = true;
+            this.labelErrorMessage.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelErrorMessage.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelErrorMessage.Location = new System.Drawing.Point(555, 800);
+            this.labelErrorMessage.Name = "labelErrorMessage";
+            this.labelErrorMessage.Size = new System.Drawing.Size(0, 32);
+            this.labelErrorMessage.TabIndex = 9;
+            // 
+            // buttonReady
+            // 
+            this.buttonReady.Location = new System.Drawing.Point(50, 746);
+            this.buttonReady.Name = "buttonReady";
+            this.buttonReady.Size = new System.Drawing.Size(454, 54);
+            this.buttonReady.TabIndex = 10;
+            this.buttonReady.Text = "Gotowe";
+            this.buttonReady.UseVisualStyleBackColor = true;
+            this.buttonReady.Click += new System.EventHandler(this.buttonReady_Click);
+            // 
+            // labelRouterInfos
+            // 
+            this.labelRouterInfos.AutoSize = true;
+            this.labelRouterInfos.Location = new System.Drawing.Point(6, 137);
+            this.labelRouterInfos.Name = "labelRouterInfos";
+            this.labelRouterInfos.Size = new System.Drawing.Size(41, 22);
+            this.labelRouterInfos.TabIndex = 11;
+            this.labelRouterInfos.Text = "info";
+            // 
+            // buttonTopologyReset
+            // 
+            this.buttonTopologyReset.ForeColor = System.Drawing.Color.Red;
+            this.buttonTopologyReset.Location = new System.Drawing.Point(1384, 54);
+            this.buttonTopologyReset.Name = "buttonTopologyReset";
+            this.buttonTopologyReset.Size = new System.Drawing.Size(166, 40);
+            this.buttonTopologyReset.TabIndex = 12;
+            this.buttonTopologyReset.Text = "Resetuj";
+            this.buttonTopologyReset.UseVisualStyleBackColor = true;
+            this.buttonTopologyReset.Click += new System.EventHandler(this.buttonTopologyReset_Click);
+            // 
+            // groupBoxInformations
+            // 
+            this.groupBoxInformations.Controls.Add(this.labelTopologyAllInfos);
+            this.groupBoxInformations.Controls.Add(this.labelRouterInfos);
+            this.groupBoxInformations.Location = new System.Drawing.Point(12, 100);
+            this.groupBoxInformations.Name = "groupBoxInformations";
+            this.groupBoxInformations.Size = new System.Drawing.Size(292, 318);
+            this.groupBoxInformations.TabIndex = 13;
+            this.groupBoxInformations.TabStop = false;
+            this.groupBoxInformations.Text = "Informacje";
+            // 
+            // labelTopologyAllInfos
+            // 
+            this.labelTopologyAllInfos.AutoSize = true;
+            this.labelTopologyAllInfos.Location = new System.Drawing.Point(6, 26);
+            this.labelTopologyAllInfos.Name = "labelTopologyAllInfos";
+            this.labelTopologyAllInfos.Size = new System.Drawing.Size(49, 22);
+            this.labelTopologyAllInfos.TabIndex = 12;
+            this.labelTopologyAllInfos.Text = "infos";
+            // 
             // TopologyEditorForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1582, 853);
+            this.ControlBox = false;
+            this.Controls.Add(this.groupBoxInformations);
+            this.Controls.Add(this.buttonTopologyReset);
+            this.Controls.Add(this.buttonReady);
+            this.Controls.Add(this.labelErrorMessage);
             this.Controls.Add(this.buttonShowInfos);
             this.Controls.Add(this.buttonSetLink);
             this.Controls.Add(this.buttonAddRouter);
@@ -153,6 +225,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.TopologyEditorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).EndInit();
+            this.groupBoxInformations.ResumeLayout(false);
+            this.groupBoxInformations.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +243,11 @@
         private System.Windows.Forms.Button buttonAddRouter;
         private System.Windows.Forms.Button buttonSetLink;
         private System.Windows.Forms.Button buttonShowInfos;
+        private System.Windows.Forms.Label labelErrorMessage;
+        private System.Windows.Forms.Button buttonReady;
+        private System.Windows.Forms.Label labelRouterInfos;
+        private System.Windows.Forms.Button buttonTopologyReset;
+        private System.Windows.Forms.GroupBox groupBoxInformations;
+        private System.Windows.Forms.Label labelTopologyAllInfos;
     }
 }
