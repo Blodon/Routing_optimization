@@ -45,12 +45,12 @@ namespace Routing_Optimization
             x = MousePosition.X -550;
             y = MousePosition.Y - 100;
 
-            if(editorOption == 1)
+            if(editorOption == 1)   ///// put new router
             {
                 if(topology.searchNearestRouter(x,y) == 0) setNewRouter(x, y);
                 else labelErrorMessage.Text = "Inny router jest za blisko!";
 
-            } else if(editorOption == 2)
+            } else if(editorOption == 2)  /////// connect two routers
             {
                 int tempRouterID = topology.searchNearestRouter(x, y);
 
@@ -80,12 +80,48 @@ namespace Routing_Optimization
                     } else labelErrorMessage.Text = "Nie wybrano routera!";
                 }
 
-            } else if(editorOption == 3)
+            } else if(editorOption == 3)  ///////// Show informations about router
             {
                int infoRouterID = topology.searchNearestRouter(x, y);
                 Router infoRouter;
                 if (infoRouterID != 0) labelRouterInfos.Text = topology.getRouterByID(infoRouterID).informations();
                 else labelErrorMessage.Text = "Nie wybrano routera!";
+
+            } else if(editorOption == 4)    ////// Check connection between two routers
+            {
+                int tempRouterID = topology.searchNearestRouter(x, y);
+
+                if (selectNumber == 1)
+                {
+                    if (tempRouterID != 0)
+                    {
+                        selectNumber = 2;
+                        selectedRouterID = tempRouterID;
+                    }
+                    else labelErrorMessage.Text = "Nie wybrano routera!";
+
+                }
+                else if (selectNumber == 2)
+                {
+                    if (tempRouterID != 0)
+                    {
+                        selectNumber = 1;
+                        if (selectedRouterID != tempRouterID)
+                        {
+                            if(topology.existsWayBetween(selectedRouterID, tempRouterID))
+                            {
+                                labelErrorMessage.Text = "ISTNIEJE";
+                            } else
+                            {
+                                labelErrorMessage.Text = "NIE ISTNIEJE";
+                            }
+
+                        }
+                        else labelErrorMessage.Text = "wybrano ten sam router!";
+
+                    }
+                    else labelErrorMessage.Text = "Nie wybrano routera!";
+                }
 
             }
 
@@ -135,6 +171,7 @@ namespace Routing_Optimization
             buttonAddRouter.ForeColor = System.Drawing.Color.Black;
             buttonSetLink.ForeColor = System.Drawing.Color.Black;
             buttonShowInfos.ForeColor = System.Drawing.Color.Black;
+            buttonCheckConnection.ForeColor = System.Drawing.Color.Black;
 
         }
 
@@ -151,6 +188,12 @@ namespace Routing_Optimization
             return topology.drawGraph();
         }
 
+        public void newRandomTopology(int routers, int links, int minBandwidth, int maxBandwidth)
+        {
+            topology = new Topology();
+            topology.randomGeneration(routers, links, minBandwidth, maxBandwidth);
+        }
+
         private void buttonReady_Click(object sender, EventArgs e)
         {
             ready = true;
@@ -164,6 +207,20 @@ namespace Routing_Optimization
             labelErrorMessage.Text = "";
             labelRouterInfos.Text = "";
             labelTopologyAllInfos.Text = topology.informations();
+        }
+
+        private void TopologyEditorForm_Shown(object sender, EventArgs e)
+        {
+            labelTopologyAllInfos.Text = topology.informations();
+            pictureBoxTopologyEditorMap.Image = topology.drawGraph();
+        }
+
+        private void buttonCheckConnection_Click(object sender, EventArgs e)
+        {
+            editOption(4);
+            selectedRouterID = 1;
+            buttonCheckConnection.ForeColor = System.Drawing.Color.Green;
+
         }
     }
 }

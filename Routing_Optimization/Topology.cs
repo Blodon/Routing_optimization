@@ -179,5 +179,200 @@ namespace Routing_Optimization
             return topologyGraph;
         }
 
+
+        public void randomGeneration(int routers, int links, int minBandwidth, int maxBandwidth)
+        {
+            int[] routerNoOfLinks = new int[links];
+
+            // Random randlink = new Random(System.DateTime.Now.Minute * System.DateTime.Now.Hour * System.DateTime.Now.Second);
+            Random randlink = new Random();
+
+            int maxLinks = (routers * (routers - 1) / 2);
+
+            for(int i=0; i<routers; i++)
+            {
+                newRouter(randlink.Next(10, 990), randlink.Next(10, 690));
+            }
+
+            double condition = (routers / 2);
+            condition = Math.Ceiling(condition);
+
+
+            //// first single connections
+            for(int i=0; i < condition; i++)
+            {
+                bool notFound = true;
+                int routerNo1;
+                int routerNo2 = 0;
+
+                do
+                {
+                    routerNo1 = randlink.Next(0, routers);
+
+                    if (routerList.ElementAt(routerNo1).getNumberOfConnections() == 0)
+                    {
+                        bool notFound2 = true;
+
+                        do
+                        {
+                            routerNo2 = randlink.Next(0, routers);
+                            if ((routerList.ElementAt(routerNo2).getNumberOfConnections() == 0) &&
+                                (routerNo1 != routerNo2))
+                            {
+                                if (!routerList.ElementAt(routerNo1).isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                                {
+                                    notFound2 = false;
+                                }
+                            }
+
+                        } while (notFound2);
+                        notFound = false;
+                    }
+
+                } while (notFound);
+
+                if (!routerList.ElementAt(routerNo1).isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                    newLink(routerList.ElementAt(routerNo1).getID(), routerList.ElementAt(routerNo2).getID(), 100);
+
+            }
+
+            
+            foreach(Router router in routerList)
+            {
+                if(router.getNumberOfConnections() == 0)
+                {
+                    
+                    int routerNo2 = 0;                    
+              
+                            bool notFound2 = true;
+
+                            do
+                            {
+                                routerNo2 = randlink.Next(0, routers);
+                                if ((routerList.ElementAt(routerNo2).getNumberOfConnections() == 1) &&
+                                    (router.getID() != routerNo2) &&
+                                    !existsWayBetween(router.getID(), routerNo2))
+                                {
+                                    if (!router.isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                                    {
+                                        notFound2 = false;
+                                    }
+                                }
+
+                            } while (notFound2);
+                           
+                        
+                        
+                    if (!router.isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                        newLink(router.getID(), routerList.ElementAt(routerNo2).getID(), 100);
+                                                                          
+
+                }
+            }
+
+
+            foreach(Router router in routerList)
+            {
+                for(int i = 0; i < routers; i++)
+                {
+                    if(router.getID()!= routerList.ElementAt(i).getID())
+                    {
+                        if (!existsWayBetween(router.getID(), routerList.ElementAt(i).getID())){
+                            newLink(router.getID(), routerList.ElementAt(i).getID(), 100);
+                        }
+                    }
+                    
+                }
+
+            }
+
+
+            //// Rest of connections random
+            for (int i = (routers-1); i < links; i++)
+            {
+                bool notFound = true;
+                int routerNo1;
+                int routerNo2 = 0;
+
+                do
+                {
+                    routerNo1 = randlink.Next(0, routers);
+                    
+                    if (routerList.ElementAt(routerNo1).getNumberOfConnections() < routers-1)
+                    {
+                        bool notFound2 = true;
+
+                        do
+                        {
+                            routerNo2 = randlink.Next(0, routers);
+                            if ((routerList.ElementAt(routerNo2).getNumberOfConnections() < routers) &&
+                                (routerNo1 != routerNo2))
+                            {                                
+                                if (!routerList.ElementAt(routerNo1).isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                                {
+                                    notFound2 = false;
+                                }
+                            }                                
+
+                        } while (notFound2);
+                        notFound = false;
+                    }                
+                    
+                } while (notFound);
+
+                if (!routerList.ElementAt(routerNo1).isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                    newLink(routerList.ElementAt(routerNo1).getID(), routerList.ElementAt(routerNo2).getID(), 100);
+               
+            }
+
+
+        }
+
+        private Point pointer()
+        {
+            Point poni = new Point();
+
+            return poni;
+        }
+
+        public bool existsWayBetween(int r1, int r2)
+        {
+
+            bool[] checkedRouters = new bool[routerNumber];
+
+            
+            for (int i = 0; i < routerNumber; i++)
+            {
+                checkedRouters[i] = false;
+                if (routerList.ElementAt(i).getID() == r1) checkedRouters[i] = true;
+            }
+
+            for (int i = 0; i < routerNumber; i++)
+            {
+                for (int j = 0; j < routerNumber; j++)
+                {
+                    if (checkedRouters[j] == true)
+                    {
+                        foreach (int routerIDs in routerList.ElementAt(j).ShowConnections())
+                        {
+                            foreach (Router router in routerList)
+                            {
+                                if (router.getID() == routerIDs) checkedRouters[routerList.IndexOf(router)] = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < routerNumber; i++)            
+                if (routerList.ElementAt(i).getID() == r2)
+                    if (checkedRouters[i] == true) return true;
+                         
+                    
+            return false;
+        }
+        
+
     }
 }

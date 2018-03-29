@@ -104,6 +104,22 @@ namespace Routing_Optimization.TopologyElements
             return infos;
         }
 
+        public int getNumberOfConnections()
+        {
+            return numberOfConnections;
+        }
+
+        public bool isConnectedTo(int routerNumber)
+        {
+            bool connectionStatus = false;
+            foreach(int routerID in connectionsList)
+            {
+                if (routerID == routerNumber) connectionStatus = true;
+            }
+
+            return connectionStatus;
+        }
+
 
 
         /**

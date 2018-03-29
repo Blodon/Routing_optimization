@@ -43,6 +43,7 @@
             this.buttonTopologyReset = new System.Windows.Forms.Button();
             this.groupBoxInformations = new System.Windows.Forms.GroupBox();
             this.labelTopologyAllInfos = new System.Windows.Forms.Label();
+            this.buttonCheckConnection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).BeginInit();
             this.groupBoxInformations.SuspendLayout();
             this.SuspendLayout();
@@ -194,12 +195,23 @@
             this.labelTopologyAllInfos.TabIndex = 12;
             this.labelTopologyAllInfos.Text = "infos";
             // 
+            // buttonCheckConnection
+            // 
+            this.buttonCheckConnection.Location = new System.Drawing.Point(1066, 54);
+            this.buttonCheckConnection.Name = "buttonCheckConnection";
+            this.buttonCheckConnection.Size = new System.Drawing.Size(166, 40);
+            this.buttonCheckConnection.TabIndex = 14;
+            this.buttonCheckConnection.Text = "Czy połączone";
+            this.buttonCheckConnection.UseVisualStyleBackColor = true;
+            this.buttonCheckConnection.Click += new System.EventHandler(this.buttonCheckConnection_Click);
+            // 
             // TopologyEditorForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1582, 853);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonCheckConnection);
             this.Controls.Add(this.groupBoxInformations);
             this.Controls.Add(this.buttonTopologyReset);
             this.Controls.Add(this.buttonReady);
@@ -224,6 +236,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.TopologyEditorForm_Load);
+            this.Shown += new System.EventHandler(this.TopologyEditorForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).EndInit();
             this.groupBoxInformations.ResumeLayout(false);
             this.groupBoxInformations.PerformLayout();
@@ -249,5 +262,6 @@
         private System.Windows.Forms.Button buttonTopologyReset;
         private System.Windows.Forms.GroupBox groupBoxInformations;
         private System.Windows.Forms.Label labelTopologyAllInfos;
+        private System.Windows.Forms.Button buttonCheckConnection;
     }
 }

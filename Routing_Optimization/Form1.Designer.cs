@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.Title = new System.Windows.Forms.Label();
             this.InfoButton = new System.Windows.Forms.Button();
@@ -41,14 +41,15 @@
             this.labelProtocol = new System.Windows.Forms.Label();
             this.trackBarMaxPath = new System.Windows.Forms.TrackBar();
             this.labelMaxPathValue = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.labelSelectMaxPath = new System.Windows.Forms.Label();
             this.labelMaxRouters = new System.Windows.Forms.Label();
             this.buttonGenerateMap = new System.Windows.Forms.Button();
             this.groupBoxGenerate = new System.Windows.Forms.GroupBox();
+            this.buttonShowGenerator = new System.Windows.Forms.Button();
             this.buttonEditor = new System.Windows.Forms.Button();
             this.groupBoxGenerateRandom = new System.Windows.Forms.GroupBox();
-            this.buttonShowGenerator = new System.Windows.Forms.Button();
+            this.labelRouterNumberValue = new System.Windows.Forms.Label();
+            this.trackBarRandomRoutersNumber = new System.Windows.Forms.TrackBar();
             this.buttonBandwidthHelp = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.labelBandwidthRange = new System.Windows.Forms.Label();
@@ -62,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPath)).BeginInit();
             this.groupBoxGenerate.SuspendLayout();
             this.groupBoxGenerateRandom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarRandomRoutersNumber)).BeginInit();
             this.groupBoxSimulation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGraph)).BeginInit();
@@ -148,13 +150,12 @@
             // 
             // trackBarMaxPath
             // 
+            this.trackBarMaxPath.LargeChange = 1;
             this.trackBarMaxPath.Location = new System.Drawing.Point(27, 168);
-            this.trackBarMaxPath.Maximum = 8;
-            this.trackBarMaxPath.Minimum = 1;
+            this.trackBarMaxPath.Maximum = 0;
             this.trackBarMaxPath.Name = "trackBarMaxPath";
             this.trackBarMaxPath.Size = new System.Drawing.Size(284, 56);
             this.trackBarMaxPath.TabIndex = 7;
-            this.trackBarMaxPath.Value = 4;
             this.trackBarMaxPath.ValueChanged += new System.EventHandler(this.trackBarMaxPath_ValueChanged);
             // 
             // labelMaxPathValue
@@ -166,37 +167,19 @@
             this.labelMaxPathValue.Size = new System.Drawing.Size(0, 23);
             this.labelMaxPathValue.TabIndex = 8;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 22;
-            this.listBox1.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8"});
-            this.listBox1.Location = new System.Drawing.Point(29, 103);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(88, 26);
-            this.listBox1.TabIndex = 9;
-            // 
             // labelSelectMaxPath
             // 
             this.labelSelectMaxPath.AutoSize = true;
             this.labelSelectMaxPath.Location = new System.Drawing.Point(23, 143);
             this.labelSelectMaxPath.Name = "labelSelectMaxPath";
-            this.labelSelectMaxPath.Size = new System.Drawing.Size(251, 22);
+            this.labelSelectMaxPath.Size = new System.Drawing.Size(201, 22);
             this.labelSelectMaxPath.TabIndex = 10;
-            this.labelSelectMaxPath.Text = "Wybierz maks. ilość połączeń:";
+            this.labelSelectMaxPath.Text = "Wybierz ilość połączeń:";
             // 
             // labelMaxRouters
             // 
             this.labelMaxRouters.AutoSize = true;
-            this.labelMaxRouters.Location = new System.Drawing.Point(23, 78);
+            this.labelMaxRouters.Location = new System.Drawing.Point(24, 62);
             this.labelMaxRouters.Name = "labelMaxRouters";
             this.labelMaxRouters.Size = new System.Drawing.Size(203, 22);
             this.labelMaxRouters.TabIndex = 11;
@@ -225,6 +208,17 @@
             this.groupBoxGenerate.Text = "Generator połączń";
             this.groupBoxGenerate.Enter += new System.EventHandler(this.groupBoxGenerate_Enter);
             // 
+            // buttonShowGenerator
+            // 
+            this.buttonShowGenerator.Location = new System.Drawing.Point(14, 100);
+            this.buttonShowGenerator.Name = "buttonShowGenerator";
+            this.buttonShowGenerator.Size = new System.Drawing.Size(376, 50);
+            this.buttonShowGenerator.TabIndex = 18;
+            this.buttonShowGenerator.Text = "Losowe połączenia";
+            this.buttonShowGenerator.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.buttonShowGenerator.UseVisualStyleBackColor = true;
+            this.buttonShowGenerator.Click += new System.EventHandler(this.buttonShowGenerator_Click);
+            // 
             // buttonEditor
             // 
             this.buttonEditor.Location = new System.Drawing.Point(14, 35);
@@ -237,13 +231,14 @@
             // 
             // groupBoxGenerateRandom
             // 
+            this.groupBoxGenerateRandom.Controls.Add(this.labelRouterNumberValue);
+            this.groupBoxGenerateRandom.Controls.Add(this.trackBarRandomRoutersNumber);
             this.groupBoxGenerateRandom.Controls.Add(this.buttonBandwidthHelp);
             this.groupBoxGenerateRandom.Controls.Add(this.comboBox2);
             this.groupBoxGenerateRandom.Controls.Add(this.labelBandwidthRange);
             this.groupBoxGenerateRandom.Controls.Add(this.comboBox1);
             this.groupBoxGenerateRandom.Controls.Add(this.labelBandwidth);
             this.groupBoxGenerateRandom.Controls.Add(this.buttonGenerateMap);
-            this.groupBoxGenerateRandom.Controls.Add(this.listBox1);
             this.groupBoxGenerateRandom.Controls.Add(this.trackBarMaxPath);
             this.groupBoxGenerateRandom.Controls.Add(this.labelMaxRouters);
             this.groupBoxGenerateRandom.Controls.Add(this.labelMaxPathValue);
@@ -256,16 +251,26 @@
             this.groupBoxGenerateRandom.Text = "Losowe połączenia";
             this.groupBoxGenerateRandom.Visible = false;
             // 
-            // buttonShowGenerator
+            // labelRouterNumberValue
             // 
-            this.buttonShowGenerator.Location = new System.Drawing.Point(14, 100);
-            this.buttonShowGenerator.Name = "buttonShowGenerator";
-            this.buttonShowGenerator.Size = new System.Drawing.Size(376, 50);
-            this.buttonShowGenerator.TabIndex = 18;
-            this.buttonShowGenerator.Text = "Losowe połączenia";
-            this.buttonShowGenerator.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.buttonShowGenerator.UseVisualStyleBackColor = true;
-            this.buttonShowGenerator.Click += new System.EventHandler(this.buttonShowGenerator_Click);
+            this.labelRouterNumberValue.AutoSize = true;
+            this.labelRouterNumberValue.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelRouterNumberValue.Location = new System.Drawing.Point(317, 87);
+            this.labelRouterNumberValue.Name = "labelRouterNumberValue";
+            this.labelRouterNumberValue.Size = new System.Drawing.Size(0, 23);
+            this.labelRouterNumberValue.TabIndex = 19;
+            // 
+            // trackBarRandomRoutersNumber
+            // 
+            this.trackBarRandomRoutersNumber.LargeChange = 1;
+            this.trackBarRandomRoutersNumber.Location = new System.Drawing.Point(27, 87);
+            this.trackBarRandomRoutersNumber.Maximum = 20;
+            this.trackBarRandomRoutersNumber.Minimum = 1;
+            this.trackBarRandomRoutersNumber.Name = "trackBarRandomRoutersNumber";
+            this.trackBarRandomRoutersNumber.Size = new System.Drawing.Size(284, 56);
+            this.trackBarRandomRoutersNumber.TabIndex = 18;
+            this.trackBarRandomRoutersNumber.Value = 1;
+            this.trackBarRandomRoutersNumber.ValueChanged += new System.EventHandler(this.trackBarRandomRoutersNumber_ValueChanged);
             // 
             // buttonBandwidthHelp
             // 
@@ -338,16 +343,16 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(785, 435);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(714, 370);
             this.chart1.TabIndex = 15;
             this.chart1.Text = "chart1";
@@ -398,6 +403,7 @@
             this.groupBoxGenerate.ResumeLayout(false);
             this.groupBoxGenerateRandom.ResumeLayout(false);
             this.groupBoxGenerateRandom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarRandomRoutersNumber)).EndInit();
             this.groupBoxSimulation.ResumeLayout(false);
             this.groupBoxSimulation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -418,7 +424,6 @@
         private System.Windows.Forms.Label labelProtocol;
         private System.Windows.Forms.TrackBar trackBarMaxPath;
         private System.Windows.Forms.Label labelMaxPathValue;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label labelSelectMaxPath;
         private System.Windows.Forms.Label labelMaxRouters;
         private System.Windows.Forms.Button buttonGenerateMap;
@@ -436,6 +441,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonBandwidthHelp;
         private System.Windows.Forms.Button buttonShowGenerator;
+        private System.Windows.Forms.TrackBar trackBarRandomRoutersNumber;
+        private System.Windows.Forms.Label labelRouterNumberValue;
     }
 }
 
