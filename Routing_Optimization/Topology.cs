@@ -58,7 +58,6 @@ namespace Routing_Optimization
 
         public Router getRouterByID(int routerID)
         {
-            Router tempRouter;
 
             foreach(Router router in routerList)
             {

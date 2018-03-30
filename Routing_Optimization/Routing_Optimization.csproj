@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,6 +70,12 @@
     </Compile>
     <Compile Include="TopologyElements\Link.cs" />
     <Compile Include="TopologyElements\Router.cs" />
+    <Compile Include="TopologyElements\SettingBandwidthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TopologyElements\SettingBandwidthForm.Designer.cs">
+      <DependentUpon>SettingBandwidthForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.pl-PL.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +96,9 @@
     </Compile>
     <EmbeddedResource Include="TopologyEditorForm.resx">
       <DependentUpon>TopologyEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TopologyElements\SettingBandwidthForm.resx">
+      <DependentUpon>SettingBandwidthForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -21,6 +21,8 @@ namespace Routing_Optimization
         private Link focusedLink;
         private int selectNumber;
 
+        private SettingBandwidthForm BandwidthForm;
+
         private int selectedRouterID;
 
 
@@ -29,6 +31,8 @@ namespace Routing_Optimization
             InitializeComponent();
             selectNumber = 1;
             this.topology = new Topology();
+            BandwidthForm = new SettingBandwidthForm();
+            BandwidthForm.TopMost = true;
             labelTopologyAllInfos.Text = topology.informations();
             
         }
@@ -72,7 +76,12 @@ namespace Routing_Optimization
                         {
                             if (!topology.checkLinkBetween(selectedRouterID, tempRouterID))
                             {
-                                topology.newLink(selectedRouterID, tempRouterID, 100);
+                                BandwidthForm.ShowDialog();
+                                while (!BandwidthForm.ready);
+                                BandwidthForm.ready = false;
+
+                                if(!BandwidthForm.isRefused())
+                                topology.newLink(selectedRouterID, tempRouterID, BandwidthForm.getBandwidth());
                                 pictureBoxTopologyEditorMap.Image = topology.drawGraph();
                             } else labelErrorMessage.Text = "podane połączenie już istnieje!";
                         } else labelErrorMessage.Text = "wybrano ten sam router!";
