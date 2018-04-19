@@ -44,6 +44,8 @@
             this.groupBoxInformations = new System.Windows.Forms.GroupBox();
             this.labelTopologyAllInfos = new System.Windows.Forms.Label();
             this.buttonCheckConnection = new System.Windows.Forms.Button();
+            this.buttonSaveFile = new System.Windows.Forms.Button();
+            this.saveFileDialogSaveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).BeginInit();
             this.groupBoxInformations.SuspendLayout();
             this.SuspendLayout();
@@ -205,12 +207,27 @@
             this.buttonCheckConnection.UseVisualStyleBackColor = true;
             this.buttonCheckConnection.Click += new System.EventHandler(this.buttonCheckConnection_Click);
             // 
+            // buttonSaveFile
+            // 
+            this.buttonSaveFile.Location = new System.Drawing.Point(47, 441);
+            this.buttonSaveFile.Name = "buttonSaveFile";
+            this.buttonSaveFile.Size = new System.Drawing.Size(232, 61);
+            this.buttonSaveFile.TabIndex = 15;
+            this.buttonSaveFile.Text = "Zapisz konfigurację";
+            this.buttonSaveFile.UseVisualStyleBackColor = true;
+            this.buttonSaveFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
+            // 
+            // saveFileDialogSaveFile
+            // 
+            this.saveFileDialogSaveFile.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialogSaveFile_FileOk);
+            // 
             // TopologyEditorForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1582, 853);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonSaveFile);
             this.Controls.Add(this.buttonCheckConnection);
             this.Controls.Add(this.groupBoxInformations);
             this.Controls.Add(this.buttonTopologyReset);
@@ -263,5 +280,7 @@
         private System.Windows.Forms.GroupBox groupBoxInformations;
         private System.Windows.Forms.Label labelTopologyAllInfos;
         private System.Windows.Forms.Button buttonCheckConnection;
+        private System.Windows.Forms.Button buttonSaveFile;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogSaveFile;
     }
 }

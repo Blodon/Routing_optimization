@@ -77,7 +77,7 @@ namespace Routing_Optimization
 
         private void buttonLoadConnections_Click(object sender, EventArgs e)
         {
-            
+            openFileDialogLoadFile.ShowDialog();          
         }
 
         private void buttonShowGenerator_Click(object sender, EventArgs e)
@@ -94,6 +94,12 @@ namespace Routing_Optimization
             trackBarMaxPath.Value = trackBarRandomRoutersNumber.Value-1;
             labelMaxPathValue.Text = trackBarMaxPath.Value.ToString();
 
+        }
+
+        private void openFileDialogLoadFile_FileOk(object sender, CancelEventArgs e)
+        {
+            editor.loadTopology(openFileDialogLoadFile.FileName);
+            pictureBoxGraph.Image = editor.getDrawing();
         }
     }
 }

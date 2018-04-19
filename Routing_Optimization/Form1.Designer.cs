@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.Title = new System.Windows.Forms.Label();
             this.InfoButton = new System.Windows.Forms.Button();
@@ -60,6 +60,7 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBoxGraph = new System.Windows.Forms.PictureBox();
             this.buttonLoadConnections = new System.Windows.Forms.Button();
+            this.openFileDialogLoadFile = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPath)).BeginInit();
             this.groupBoxGenerate.SuspendLayout();
             this.groupBoxGenerateRandom.SuspendLayout();
@@ -264,7 +265,7 @@
             // 
             this.trackBarRandomRoutersNumber.LargeChange = 1;
             this.trackBarRandomRoutersNumber.Location = new System.Drawing.Point(27, 87);
-            this.trackBarRandomRoutersNumber.Maximum = 20;
+            this.trackBarRandomRoutersNumber.Maximum = 200;
             this.trackBarRandomRoutersNumber.Minimum = 1;
             this.trackBarRandomRoutersNumber.Name = "trackBarRandomRoutersNumber";
             this.trackBarRandomRoutersNumber.Size = new System.Drawing.Size(284, 56);
@@ -343,16 +344,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(785, 435);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(714, 370);
             this.chart1.TabIndex = 15;
             this.chart1.Text = "chart1";
@@ -378,6 +379,11 @@
             this.buttonLoadConnections.Text = "Wczytaj połączenia";
             this.buttonLoadConnections.UseVisualStyleBackColor = true;
             this.buttonLoadConnections.Click += new System.EventHandler(this.buttonLoadConnections_Click);
+            // 
+            // openFileDialogLoadFile
+            // 
+            this.openFileDialogLoadFile.FileName = "Load file";
+            this.openFileDialogLoadFile.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogLoadFile_FileOk);
             // 
             // MainMenu
             // 
@@ -443,6 +449,7 @@
         private System.Windows.Forms.Button buttonShowGenerator;
         private System.Windows.Forms.TrackBar trackBarRandomRoutersNumber;
         private System.Windows.Forms.Label labelRouterNumberValue;
+        private System.Windows.Forms.OpenFileDialog openFileDialogLoadFile;
     }
 }
 

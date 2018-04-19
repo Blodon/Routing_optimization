@@ -92,5 +92,18 @@ namespace Routing_Optimization.TopologyElements
         {
             return secondPoint;
         }
+
+        public int firsRouterID()
+        {
+            return routersConnected[0];
+        }
+        public int secondRouterID()
+        {
+            return routersConnected[1];
+        }
+        public int getBandwidth()
+        {
+            return bandWidth;
+        }
     }
 }

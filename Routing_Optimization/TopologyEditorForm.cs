@@ -231,5 +231,22 @@ namespace Routing_Optimization
             buttonCheckConnection.ForeColor = System.Drawing.Color.Green;
 
         }
+
+        public void loadTopology(String filename)
+        {
+            topology = new Topology();
+            topology.ReadTextFromFile(filename);
+
+        }
+
+        private void saveFileDialogSaveFile_FileOk(object sender, CancelEventArgs e)
+        {
+            topology.WriteTextToFile(saveFileDialogSaveFile.FileName);
+        }
+
+        private void buttonSaveFile_Click(object sender, EventArgs e)
+        {
+            saveFileDialogSaveFile.ShowDialog();
+        }
     }
 }

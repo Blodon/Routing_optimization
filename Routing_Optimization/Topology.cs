@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Routing_Optimization
@@ -371,7 +372,92 @@ namespace Routing_Optimization
                     
             return false;
         }
-        
+
+        public void WriteTextToFile(String fileName)
+        {
+
+            FileStream fileStream = File.Open(fileName, FileMode.Create, FileAccess.Write);
+            StreamWriter fileWriter = new StreamWriter(fileStream);
+
+            fileWriter.WriteLine("Ilość wprowadzonych routerów: ");
+            fileWriter.WriteLine(routerList.Count.ToString());
+            foreach (Router position in routerList)
+            {
+
+                fileWriter.WriteLine("ID routera : ");
+                fileWriter.WriteLine(position.getID().ToString());
+                fileWriter.WriteLine("Wspolrzedna X i Y: ");
+                fileWriter.WriteLine(position.getPositionX().ToString());
+                fileWriter.WriteLine(position.getPositionY().ToString());
+
+            }
+
+            fileWriter.WriteLine("Ilość wprowadzonych połączeń: ");
+            fileWriter.WriteLine(linkList.Count.ToString());
+            foreach (Link link in linkList)
+            {
+                //fileWriter.WriteLine("Polaczenie miedzy routerem "+ link.firsRouterID()+" a "+ link.secondRouterID());
+                fileWriter.WriteLine("Polaczenie miedzy routerem ");
+                fileWriter.WriteLine(link.firsRouterID().ToString());
+                fileWriter.WriteLine("a");
+                fileWriter.WriteLine(link.secondRouterID().ToString());
+                fileWriter.WriteLine("Przepustowość łącza: ");
+                fileWriter.WriteLine(link.getBandwidth().ToString());
+            }
+            fileWriter.Flush();
+            fileWriter.Close();
+        }
+
+
+        public void ReadTextFromFile(String fileName)
+        {
+            FileInfo fileInfo = new FileInfo(fileName);
+            // If techcoil.txt exists 
+            if (fileInfo.Exists)
+            {
+                // Get an instance of FileStream that represents
+                // techcoil.txt
+                FileStream fileStream = fileInfo.Open(FileMode.Open, FileAccess.Read);
+                // Encapsulate the file stream instance in a StreamReader
+                // instance
+                StreamReader reader = new StreamReader(fileStream);
+                String line;
+                line = reader.ReadLine();
+                // Read the file, line by line
+                if ((line = reader.ReadLine()) != null)
+                {
+                    // Print out the line to console
+                    int numberOfRouters = int.Parse(line);
+                    for (int i = 0; i < numberOfRouters; i++)
+                    {
+                        for (int j = 0; j < 3; j++) line = reader.ReadLine();
+                        newRouter(int.Parse(reader.ReadLine()), int.Parse(reader.ReadLine()));
+                    }
+
+                    line = reader.ReadLine();
+                    line = reader.ReadLine();
+                    int numberOfLinks = int.Parse(line);
+                    for (int i = 0; i < numberOfLinks; i++)  // zczytywanie połączeń (linków) pomiędzy routerami wraz z parametrami
+                    {
+                        line = reader.ReadLine();
+                        int IDRouter1 = int.Parse(reader.ReadLine());
+                        line = reader.ReadLine();
+                        int IDRouter2 = int.Parse(reader.ReadLine());
+                        line = reader.ReadLine();
+                        int bandWidth = int.Parse(reader.ReadLine());
+                        newLink(IDRouter1, IDRouter2, bandWidth);
+                    }
+
+                } // end while
+
+                reader.Close();
+            }
+            else
+            {
+                Console.WriteLine("techcoil.txt does not exist.");
+            } // end if
+
+        }
 
     }
 }
