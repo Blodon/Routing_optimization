@@ -24,7 +24,10 @@ namespace Routing_Optimization.TopologyElements
 
         private void buttonSetBandwidthApply_Click(object sender, EventArgs e)
         {
-            setBandwidth();
+
+            if (radioButtonSetBandwidthStandard.Checked) ;
+            else if (radioButtonSetBandwidthType.Checked) setBandwidth();
+
             this.Hide();
             ready = true;
         }
@@ -56,5 +59,19 @@ namespace Routing_Optimization.TopologyElements
                 return true;
             } else return false;
         }
+
+        private void comboBoxSetBandwidthStandard_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            changeBandwidthStandard(comboBoxSetBandwidthStandard.Text);
+        }
+
+        private void changeBandwidthStandard(String standard)
+        {
+
+            if (standard == "100BaseT") bandwidth = 100;
+            else if (standard == "10BaseT") bandwidth = 10;
+
+        }
+
     }
 }

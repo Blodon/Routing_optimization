@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Routing_Optimization
 {
-    class Topology
+    public class Topology : ICloneable
     {
-        private bool isSet;
         private int routerNumber;
         private List<Router> routerList;
         private List<Link> linkList;
         private Bitmap topologyGraph;
+        private Random randomBandwidthGenerator;
 
 
 
@@ -24,12 +24,18 @@ namespace Routing_Optimization
             routerNumber = 0;
             routerList = new List<Router>();
             linkList = new List<Link>();
+            randomBandwidthGenerator = new Random();
 
         }
 
         ~Topology()
         {
 
+        }
+
+        public object clone()
+        {
+            return this.MemberwiseClone();
         }
 
         public void SetNewDevice()
@@ -68,6 +74,8 @@ namespace Routing_Optimization
             return new Router();
         }
 
+        public int getRouterNumber() => routerNumber;
+
         private Link searchLinkBetween(int routerID1, int routerID2)
         {
             /////// TODO
@@ -80,6 +88,11 @@ namespace Routing_Optimization
             Link tempLink = new Link();
 
             return tempLink;
+        }
+
+        public List<Link> getLinkList()
+        {
+            return linkList;
         }
 
         public void newLink(int router1ID, int router2ID, int bandWidth)
@@ -105,6 +118,35 @@ namespace Routing_Optimization
             }
 
             Link temp = new Link(firstPointtemp.X, firstPointtemp.Y, secondPointtemp.X, secondPointtemp.Y, router1ID, router2ID, bandWidth);
+
+            linkList.Add(temp);
+
+
+        }
+
+        public void newLink(int router1ID, int router2ID, int bandWidth, int delay)
+        {
+            Point firstPointtemp = new Point();
+            Point secondPointtemp = new Point();
+
+            foreach (Router router in routerList)
+            {
+                if (router.getID() == router1ID)
+                {
+                    router.addConnection(router2ID);
+                    firstPointtemp.X = router.getPositionX();
+                    firstPointtemp.Y = router.getPositionY();
+                }
+                if (router.getID() == router2ID)
+                {
+                    router.addConnection(router1ID);
+                    secondPointtemp.X = router.getPositionX();
+                    secondPointtemp.Y = router.getPositionY();
+                }
+
+            }
+
+            Link temp = new Link(firstPointtemp.X, firstPointtemp.Y, secondPointtemp.X, secondPointtemp.Y, router1ID, router2ID, bandWidth, delay);
 
             linkList.Add(temp);
 
@@ -162,10 +204,11 @@ namespace Routing_Optimization
             Font font = new Font("Arial", 12);
             Pen pen = new Pen(cBrush);
 
+
             foreach (Link link in linkList)
             {
+               pen = new Pen(link.getColor());
                 graphics.DrawLine(pen, link.getFirstPoint(), link.getSecondPoint());
-
             }
 
             foreach (Router routerek in routerList)
@@ -328,6 +371,111 @@ namespace Routing_Optimization
 
         }
 
+        
+
+        public void randomGeneration2(int routers, int links, int minBandwidth, int maxBandwidth, int minDelay, int maxDelay)
+        {
+
+            ///// Init
+            bool[] routersRandconnected = new bool[routers];
+            for (int i = 0; i < routers; i++)
+                routersRandconnected[i] = false;
+
+            //// Randomizator
+            Random randInt = new Random();
+            randomBandwidthGenerator = new Random();
+
+
+            //// Random routers
+            for (int i = 0; i < routers; i++)
+            {
+                newRouter(randInt.Next(10, 990), randInt.Next(10, 690));
+            }
+
+            int[] routersToConnect = new int[routers];
+
+
+            for (int i = 0; i < routers; i++)
+                routersToConnect[i] = i;
+            
+            int linkCounter = 0;
+
+            
+            //// Random links
+            for (int i = 1; i < routers; i++)
+            {
+
+                    newLink(routersToConnect[i]+1, routersToConnect[randInt.Next(0, (i - 1))] +1, randomBandwidth(minBandwidth, maxBandwidth), randomBandwidth(minDelay, maxDelay));
+                
+                    linkCounter++;
+            }
+            
+            //// Rest of connections random
+            for (int i = (routers - 1); i < links; i++)
+            {
+                bool notFound = true;
+                int routerNo1;
+                int routerNo2 = 0;
+
+                do
+                {
+                    routerNo1 = randInt.Next(0, routers);
+
+                    if (routerList.ElementAt(routerNo1).getNumberOfConnections() < routers - 1)
+                    {
+                        bool notFound2 = true;
+
+                        do
+                        {
+                            routerNo2 = randInt.Next(0, routers);
+                            if ((routerList.ElementAt(routerNo2).getNumberOfConnections() < routers) &&
+                                (routerNo1 != routerNo2))
+                            {
+                                if (!routerList.ElementAt(routerNo1).isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                                {
+                                    notFound2 = false;
+                                }
+                            }
+
+                        } while (notFound2);
+                        notFound = false;
+                    }
+
+                } while (notFound);
+
+                if (!routerList.ElementAt(routerNo1).isConnectedTo(routerList.ElementAt(routerNo2).getID()))
+                    newLink(routerList.ElementAt(routerNo1).getID(), routerList.ElementAt(routerNo2).getID(), randomBandwidth(minBandwidth, maxBandwidth), randomBandwidth(minDelay, maxDelay));
+
+            }
+
+
+
+
+        }
+
+        public void setNewLinkParameters(int minBandwidth, int maxBandwidth, int minDelay, int maxDelay)
+        {
+            foreach(Link links in linkList)
+            {
+                links.ChangeBandWidth(randomBandwidthGenerator.Next(minBandwidth, maxBandwidth));
+                links.ChangeDelay(randomBandwidthGenerator.Next(minDelay, maxDelay));
+            }
+        }
+
+        private int randomBandwidth(int minBandwidth, int maxBandwidth)
+        {
+            int bandWidth;
+
+            bandWidth = randomBandwidthGenerator.Next(minBandwidth, maxBandwidth);
+            
+            return bandWidth;
+        }
+
+
+
+
+
+
         private Point pointer()
         {
             Point poni = new Point();
@@ -403,6 +551,8 @@ namespace Routing_Optimization
                 fileWriter.WriteLine(link.secondRouterID().ToString());
                 fileWriter.WriteLine("Przepustowość łącza: ");
                 fileWriter.WriteLine(link.getBandwidth().ToString());
+                fileWriter.WriteLine("Opóźnienie na łączu: ");
+                fileWriter.WriteLine(link.getDelay().ToString());
             }
             fileWriter.Flush();
             fileWriter.Close();
@@ -445,7 +595,9 @@ namespace Routing_Optimization
                         int IDRouter2 = int.Parse(reader.ReadLine());
                         line = reader.ReadLine();
                         int bandWidth = int.Parse(reader.ReadLine());
-                        newLink(IDRouter1, IDRouter2, bandWidth);
+                        line = reader.ReadLine();
+                        int delay = int.Parse(reader.ReadLine());
+                        newLink(IDRouter1, IDRouter2, bandWidth, delay);
                     }
 
                 } // end while
@@ -454,10 +606,41 @@ namespace Routing_Optimization
             }
             else
             {
-                Console.WriteLine("techcoil.txt does not exist.");
+               // if file doesnt exist
             } // end if
 
         }
 
+        public void resetLinkColor()
+        {
+            foreach (Link link in linkList)
+            {
+                link.resetColor();
+            }
+        }
+
+        public void colorLink(int firstRouter, int secondRouter)
+        {
+            foreach(Link link in linkList)
+            {
+                if (link.CheckLink(firstRouter, secondRouter)) link.setRedColor();
+                else if (link.CheckLink(secondRouter, firstRouter)) link.setRedColor();
+            }
+        }
+
+        public String printAllLinksToOneStringWithParams()
+        {
+            String allInOneString = "ID1;ID2;BandWidth[Mbps];Delay[0.01ms]\n";
+
+            foreach ( Link links in linkList)
+                allInOneString += links.firsRouterID().ToString() + ";" + links.secondRouterID().ToString() + ";" + links.getBandwidth().ToString() + ";" + links.getDelay().ToString() + "\n";
+            
+            return allInOneString;
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

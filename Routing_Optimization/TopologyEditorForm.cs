@@ -1,4 +1,5 @@
 ﻿using Routing_Optimization.TopologyElements;
+using Routing_Optimization.Algorithms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,14 @@ namespace Routing_Optimization
         private Link focusedLink;
         private int selectNumber;
 
+        /// Algorytmy
+
+        private Algorithm algorithm;
+
+
+        /// </summary>
+
+
         private SettingBandwidthForm BandwidthForm;
 
         private int selectedRouterID;
@@ -41,6 +50,7 @@ namespace Routing_Optimization
         {
             ready = false;
         }
+
 
         private void pictureBoxTopologyEditorMap_MouseClick(object sender, MouseEventArgs e)
         {
@@ -76,13 +86,27 @@ namespace Routing_Optimization
                         {
                             if (!topology.checkLinkBetween(selectedRouterID, tempRouterID))
                             {
-                                BandwidthForm.ShowDialog();
-                                while (!BandwidthForm.ready);
-                                BandwidthForm.ready = false;
+                                int bandwidth = 0;
+                                int delay = 0;
+
+                                if (checkBoxSameBandwidth.Checked)
+                                {
+                                    bandwidth = int.Parse(textBoxTypeBandwidth.Text);
+                                    delay = int.Parse(textBoxTypeDelay.Text);
+                                }
+                                else
+                                {
+                                    BandwidthForm.ShowDialog();
+                                    while (!BandwidthForm.ready) ;
+                                    BandwidthForm.ready = false;
+                                    bandwidth = BandwidthForm.getBandwidth();
+                                    delay = 5;  ///// uzupelnic w widoku do uzupelniania delay
+                                }
 
                                 if(!BandwidthForm.isRefused())
-                                topology.newLink(selectedRouterID, tempRouterID, BandwidthForm.getBandwidth());
+                                topology.newLink(selectedRouterID, tempRouterID, bandwidth, delay);
                                 pictureBoxTopologyEditorMap.Image = topology.drawGraph();
+
                             } else labelErrorMessage.Text = "podane połączenie już istnieje!";
                         } else labelErrorMessage.Text = "wybrano ten sam router!";
 
@@ -197,10 +221,11 @@ namespace Routing_Optimization
             return topology.drawGraph();
         }
 
-        public void newRandomTopology(int routers, int links, int minBandwidth, int maxBandwidth)
+        public void newRandomTopology(int routers, int links, int minBandwidth, int maxBandwidth, int minDelay, int maxDelay)
         {
             topology = new Topology();
-            topology.randomGeneration(routers, links, minBandwidth, maxBandwidth);
+            //topology.randomGeneration(routers, links, minBandwidth, maxBandwidth);
+            topology.randomGeneration2(routers, links, minBandwidth, maxBandwidth, minDelay, maxDelay);
         }
 
         private void buttonReady_Click(object sender, EventArgs e)
@@ -247,6 +272,25 @@ namespace Routing_Optimization
         private void buttonSaveFile_Click(object sender, EventArgs e)
         {
             saveFileDialogSaveFile.ShowDialog();
+        }
+
+        private void buttonLoadTopology_Click(object sender, EventArgs e)
+        {
+            openFileDialogLoadFile.ShowDialog();
+        }
+
+        private void openFileDialogLoadFile_FileOk(object sender, CancelEventArgs e)
+        {
+            topology = new Topology();
+            loadTopology(openFileDialogLoadFile.FileName);
+            pictureBoxTopologyEditorMap.Image = topology.drawGraph();
+        }
+        
+
+        public Topology getTopology()
+        {
+            Topology newtopo = topology;
+            return newtopo;
         }
     }
 }

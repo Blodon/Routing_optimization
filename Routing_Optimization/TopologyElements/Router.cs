@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Routing_Optimization.TopologyElements
 {
 
-    class Router
+    public class Router
     {
         private bool status;
         private int routerID;

@@ -13,3 +13,4 @@ C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Relea
 C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Release\pl-PL\Routing_Optimization.resources.dll
 C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Release\Routing_Optimization.exe
 C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Release\Routing_Optimization.pdb
+C:\Users\Damian\source\repos\Routing_Optimization\Routing_Optimization\obj\Release\Routing_Optimization.TopologyElements.SettingBandwidthForm.resources

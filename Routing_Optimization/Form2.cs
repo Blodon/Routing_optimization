@@ -21,7 +21,11 @@ namespace Routing_Optimization
         {
             InfoLabelTopic.Text = "Optymalizacja trasy w ruchu sieciowym\nz wykorzystaniem algorytmow\nprotokołów routingu";
             InfoLabelSubject.Text = "Systemy wspomagania decyzji\ni symulacja komputerowa\n\nProwadzacy:\nDr inz. Wojciech Kmiecik";
-            InfoLabelAutors.Text = "Autorzy:\nxxx yyy 123123\nzzz aaa 321321";
+            InfoLabelAutors.Text = "Autorzy:\n";
+            InfoLabelAutors.Text += "Damian Głowacki 219328\n";
+            InfoLabelAutors.Text += "Jakub Bartyzel 219135\n";
+            InfoLabelAutors.Text += "Miłosz Dunikowski 219162\n";
+            InfoLabelAutors.Text += "Michał Młynarz 223554";
         }
 
         private void InfoButtonExit_Click(object sender, EventArgs e)

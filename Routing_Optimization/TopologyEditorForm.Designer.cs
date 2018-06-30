@@ -46,8 +46,19 @@
             this.buttonCheckConnection = new System.Windows.Forms.Button();
             this.buttonSaveFile = new System.Windows.Forms.Button();
             this.saveFileDialogSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.checkBoxSameBandwidth = new System.Windows.Forms.CheckBox();
+            this.groupBoxBandWidth = new System.Windows.Forms.GroupBox();
+            this.textBoxTypeBandwidth = new System.Windows.Forms.TextBox();
+            this.buttonLoadTopology = new System.Windows.Forms.Button();
+            this.openFileDialogLoadFile = new System.Windows.Forms.OpenFileDialog();
+            this.labelAutoBandwidth = new System.Windows.Forms.Label();
+            this.labelAutoDelay = new System.Windows.Forms.Label();
+            this.textBoxTypeDelay = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).BeginInit();
             this.groupBoxInformations.SuspendLayout();
+            this.groupBoxBandWidth.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTopologyEditor
@@ -209,7 +220,7 @@
             // 
             // buttonSaveFile
             // 
-            this.buttonSaveFile.Location = new System.Drawing.Point(47, 441);
+            this.buttonSaveFile.Location = new System.Drawing.Point(310, 107);
             this.buttonSaveFile.Name = "buttonSaveFile";
             this.buttonSaveFile.Size = new System.Drawing.Size(232, 61);
             this.buttonSaveFile.TabIndex = 15;
@@ -221,12 +232,107 @@
             // 
             this.saveFileDialogSaveFile.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialogSaveFile_FileOk);
             // 
+            // checkBoxSameBandwidth
+            // 
+            this.checkBoxSameBandwidth.AutoSize = true;
+            this.checkBoxSameBandwidth.Location = new System.Drawing.Point(10, 29);
+            this.checkBoxSameBandwidth.Name = "checkBoxSameBandwidth";
+            this.checkBoxSameBandwidth.Size = new System.Drawing.Size(232, 26);
+            this.checkBoxSameBandwidth.TabIndex = 16;
+            this.checkBoxSameBandwidth.Text = "Automatyczne ustawianie";
+            this.checkBoxSameBandwidth.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxBandWidth
+            // 
+            this.groupBoxBandWidth.Controls.Add(this.label2);
+            this.groupBoxBandWidth.Controls.Add(this.label1);
+            this.groupBoxBandWidth.Controls.Add(this.textBoxTypeDelay);
+            this.groupBoxBandWidth.Controls.Add(this.labelAutoDelay);
+            this.groupBoxBandWidth.Controls.Add(this.labelAutoBandwidth);
+            this.groupBoxBandWidth.Controls.Add(this.textBoxTypeBandwidth);
+            this.groupBoxBandWidth.Controls.Add(this.checkBoxSameBandwidth);
+            this.groupBoxBandWidth.Location = new System.Drawing.Point(12, 434);
+            this.groupBoxBandWidth.Name = "groupBoxBandWidth";
+            this.groupBoxBandWidth.Size = new System.Drawing.Size(291, 287);
+            this.groupBoxBandWidth.TabIndex = 17;
+            this.groupBoxBandWidth.TabStop = false;
+            this.groupBoxBandWidth.Text = "Przepustowość";
+            // 
+            // textBoxTypeBandwidth
+            // 
+            this.textBoxTypeBandwidth.Location = new System.Drawing.Point(104, 72);
+            this.textBoxTypeBandwidth.Name = "textBoxTypeBandwidth";
+            this.textBoxTypeBandwidth.Size = new System.Drawing.Size(102, 30);
+            this.textBoxTypeBandwidth.TabIndex = 17;
+            this.textBoxTypeBandwidth.Text = "100";
+            // 
+            // buttonLoadTopology
+            // 
+            this.buttonLoadTopology.Location = new System.Drawing.Point(310, 174);
+            this.buttonLoadTopology.Name = "buttonLoadTopology";
+            this.buttonLoadTopology.Size = new System.Drawing.Size(232, 61);
+            this.buttonLoadTopology.TabIndex = 18;
+            this.buttonLoadTopology.Text = "Wczytaj konfigurację";
+            this.buttonLoadTopology.UseVisualStyleBackColor = true;
+            this.buttonLoadTopology.Click += new System.EventHandler(this.buttonLoadTopology_Click);
+            // 
+            // openFileDialogLoadFile
+            // 
+            this.openFileDialogLoadFile.FileName = "openFileDialogLoadFile";
+            this.openFileDialogLoadFile.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogLoadFile_FileOk);
+            // 
+            // labelAutoBandwidth
+            // 
+            this.labelAutoBandwidth.AutoSize = true;
+            this.labelAutoBandwidth.Location = new System.Drawing.Point(15, 75);
+            this.labelAutoBandwidth.Name = "labelAutoBandwidth";
+            this.labelAutoBandwidth.Size = new System.Drawing.Size(102, 22);
+            this.labelAutoBandwidth.TabIndex = 18;
+            this.labelAutoBandwidth.Text = "Bandwidth:";
+            // 
+            // labelAutoDelay
+            // 
+            this.labelAutoDelay.AutoSize = true;
+            this.labelAutoDelay.Location = new System.Drawing.Point(15, 121);
+            this.labelAutoDelay.Name = "labelAutoDelay";
+            this.labelAutoDelay.Size = new System.Drawing.Size(63, 22);
+            this.labelAutoDelay.TabIndex = 19;
+            this.labelAutoDelay.Text = "Delay:";
+            // 
+            // textBoxTypeDelay
+            // 
+            this.textBoxTypeDelay.Location = new System.Drawing.Point(104, 117);
+            this.textBoxTypeDelay.Name = "textBoxTypeDelay";
+            this.textBoxTypeDelay.Size = new System.Drawing.Size(102, 30);
+            this.textBoxTypeDelay.TabIndex = 20;
+            this.textBoxTypeDelay.Text = "5";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(212, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 22);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "[Mbps]";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(212, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 22);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "[0.01ms]";
+            // 
             // TopologyEditorForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1582, 853);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonLoadTopology);
+            this.Controls.Add(this.groupBoxBandWidth);
             this.Controls.Add(this.buttonSaveFile);
             this.Controls.Add(this.buttonCheckConnection);
             this.Controls.Add(this.groupBoxInformations);
@@ -257,6 +363,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopologyEditorMap)).EndInit();
             this.groupBoxInformations.ResumeLayout(false);
             this.groupBoxInformations.PerformLayout();
+            this.groupBoxBandWidth.ResumeLayout(false);
+            this.groupBoxBandWidth.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +390,15 @@
         private System.Windows.Forms.Button buttonCheckConnection;
         private System.Windows.Forms.Button buttonSaveFile;
         private System.Windows.Forms.SaveFileDialog saveFileDialogSaveFile;
+        private System.Windows.Forms.CheckBox checkBoxSameBandwidth;
+        private System.Windows.Forms.GroupBox groupBoxBandWidth;
+        private System.Windows.Forms.TextBox textBoxTypeBandwidth;
+        private System.Windows.Forms.Button buttonLoadTopology;
+        private System.Windows.Forms.OpenFileDialog openFileDialogLoadFile;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxTypeDelay;
+        private System.Windows.Forms.Label labelAutoDelay;
+        private System.Windows.Forms.Label labelAutoBandwidth;
     }
 }

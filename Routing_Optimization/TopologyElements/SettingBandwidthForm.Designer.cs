@@ -84,10 +84,15 @@
             // comboBoxSetBandwidthStandard
             // 
             this.comboBoxSetBandwidthStandard.FormattingEnabled = true;
+            this.comboBoxSetBandwidthStandard.Items.AddRange(new object[] {
+            "10BaseT",
+            "100BaseT"});
             this.comboBoxSetBandwidthStandard.Location = new System.Drawing.Point(54, 91);
             this.comboBoxSetBandwidthStandard.Name = "comboBoxSetBandwidthStandard";
             this.comboBoxSetBandwidthStandard.Size = new System.Drawing.Size(168, 24);
-            this.comboBoxSetBandwidthStandard.TabIndex = 4;
+            this.comboBoxSetBandwidthStandard.TabIndex = 2;
+            this.comboBoxSetBandwidthStandard.Text = "100BaseT";
+            this.comboBoxSetBandwidthStandard.SelectedIndexChanged += new System.EventHandler(this.comboBoxSetBandwidthStandard_SelectedIndexChanged);
             // 
             // textBoxSetBandwidthType
             // 
